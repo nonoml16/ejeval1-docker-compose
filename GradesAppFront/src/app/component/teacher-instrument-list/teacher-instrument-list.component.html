@@ -1,0 +1,69 @@
+<ng-template #addModal let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="mb-3">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Introduce el nombre del instrumento</label>
+                    <input type="text" class="form-control" id="name" name="name" aria-describedby="codRef" [(ngModel)]="name" required>
+                    <div id="crError" class="text-danger">{{nameErr}}</div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="content" class="form-label">Introduce los contenidos del insturmento</label>
+                    <input type="text" class="form-control" id="content" name="content" required [(ngModel)]="contents">
+                    <div id="dcError" class="text-danger">{{contentErr}}</div>
+                  </div>
+                  <div class="mb-3">
+                    <div>Selecciona la fecha en la que se realizará</div>
+                    <div class="input-group">
+                        <input
+                            class="form-control"
+                            placeholder="yyyy-mm-dd"
+                            name="dp"
+                            [(ngModel)]="date"
+                            ngbDatepicker
+                            #d="ngbDatepicker"
+                            required
+                        />
+                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"><fa-icon [icon]="['fas', 'calendar-days']" class=" "></fa-icon></button>
+                    </div>
+                    <div id="dcError" class="text-danger">{{dateErr}}</div>
+                  </div>
+                  <div class="">Selecciona los referentes que quieres agregar</div>
+                  <div class="m-3 row">
+                    
+                    <div class="form-check col-4" *ngFor="let ref of referenteList">
+                        <input class="form-check-input" type="checkbox" (value)="ref.codReferente" (change)="addToReferentes(ref.codReferente, $event)" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          {{ref.codReferente}}
+                        </label>
+                    </div>
+                    
+                  </div>
+                  <div id="dcError" class="text-danger">{{refErr}}</div>
+                  <button type="button" class="btn btn-dark" (click)="toSave()">Guardar</button>
+                
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+	</div>
+</ng-template>
+<div class="d-flex mb-1 justify-content-between">
+    <div class=" fw-bold">
+        Instrumentos de Evaluación
+    </div>
+    <div></div>
+    <div class="">
+        <button class="btn btn-primary fs-5" (click)="open(addModal)"><fa-icon [icon]="['fas', 'circle-plus']" class="text-white "></fa-icon> Añadir</button>
+    </div>
+</div>
+<div class="d-flex flex-column">
+    <app-teacher-instrument-item *ngFor="let ins of instrumentoList" [instrument]="ins" [asignaturaId]="asignaturaId"></app-teacher-instrument-item>
+</div>
+<nav class="d-flex justify-content-center mt-2">
+    <ngb-pagination [collectionSize]="instrumentoInfo.totalElements" [(page)]="page" [maxSize]="instrumentoInfo.size" [boundaryLinks]="true" />
+</nav>

@@ -1,0 +1,7 @@
+.form-control {
+    border-radius: 20px;
+    margin-bottom: 25px;
+    padding: 10px 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: inset 1px 1px 5px 5px rgb(0, 0, 0, 0.05);
+}

@@ -1,0 +1,108 @@
+<div class="container">
+    <div class="mt-4">
+        <div class="row">
+            <div class="col-11">
+                <h1><strong>Profesores</strong></h1>
+            </div>
+            <div class="col-1 d-flex align-items-center boton-anadir">
+                <button type="button" class="btn btn-primary" (click)="open(content)">
+                    <div class="d-flex align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-plus-circle me-2" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                        </svg>
+                        <span>Añadir</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+        <hr style="margin-top: 0" />
+    </div>
+    <div>
+        <app-teacher-list [list]="teacherList"></app-teacher-list>
+    </div>
+    <div class="pagination justify-content-center">
+        <ngb-pagination class="custom-pagination" [maxSize]="2" [boundaryLinks]="true" [collectionSize]="count"
+            [(page)]="page" [pageSize]="pageSize" (pageChange)="loadNewPage()"
+            aria-label="Default pagination"></ngb-pagination>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Añadir profesor</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="mb-3">
+                <div class="form-group">
+                    <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre"
+                        [(ngModel)]="nombre" required />
+                    <div id="nombreError" class="text-danger mx-3">{{ nombreError }}</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-group">
+                    <input id="apellidos" name="apellidos" type="text" class="form-control" placeholder="Apellidos"
+                        [(ngModel)]="apellidos" required />
+                    <div id="apellidosError" class="text-danger mx-3">
+                        {{ apellidosError }}
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-group">
+                    <input id="email" name="email" type="text" class="form-control" placeholder="Email"
+                        [(ngModel)]="email" required />
+                    <div id="emailError" class="text-danger mx-3">
+                        {{ emailError }}
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-group">
+                    <input id="titulo" name="titulo" type="text" class="form-control" placeholder="Titulación"
+                        [(ngModel)]="titulo" required />
+                    <div id="tituloError" class="text-danger mx-3">
+                        {{ tituloError }}
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-group">
+                    <input id="username" name="username" class="form-control" placeholder="Nombre de usuario"
+                        type="text" [(ngModel)]="username" required />
+                    <div id="usernameError" class="text-danger mx-3">
+                        {{ usernameError }}
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-group">
+                    <input id="password" name="password" type="password" class="form-control" placeholder="Contraseña"
+                        [(ngModel)]="password" required />
+                    <div id="passwordError" class="text-danger mx-3">
+                        {{ passwordError }}
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-group">
+                    <input id="rpassword" name="rpassword" type="password" class="form-control"
+                        placeholder="Repetir contraseña" [(ngModel)]="rpassword" required />
+                    <div id="rpasswordError" class="text-danger mx-3">
+                        {{ rpasswordError }}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="createTeacher()">
+            Save
+        </button>
+    </div>
+</ng-template>

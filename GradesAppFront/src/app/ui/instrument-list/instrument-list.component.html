@@ -1,0 +1,20 @@
+<table class="table table-striped table-secondary table-hover table-responsive">
+    <thead>
+        <tr class="table-dark">
+            <th scope="col">Codigo referente</th>
+            <th scope="col"> Descripcion</th>
+            <th scope="col">Calificacion</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+            <tr *ngFor="let referente of referenteList;index as i_alumn">
+                <th scope="row">{{ referente.codReferente }}</th>
+                <td>
+                    {{ referente.descripcion }}
+                </td>
+                <td>
+                    {{calificaciones[i_alumn]}}
+                </td>
+            </tr>
+    </tbody>
+</table>

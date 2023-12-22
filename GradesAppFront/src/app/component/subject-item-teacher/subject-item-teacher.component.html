@@ -1,0 +1,19 @@
+<div
+  class="card mb-3 rounded-4"
+  [ngStyle]="{
+    width: '20rem',
+    height: '13rem',
+    'background-color': subject.color
+  }"
+>
+  <div class="card-body" style="color: black">
+    <div style="display: flex; justify-content: space-between">
+      <h3>{{ subject.asigNombre }}</h3>
+    </div>
+    <h5 class="card-title">{{ subject.nombreProfesor }}</h5>
+    <p class="card-text">
+      {{ subject.asigDescripcion }}
+    </p>
+    <p style="text-align: center">{{subject.numAlumnos}} Alumnos</p>
+  </div>
+</div>

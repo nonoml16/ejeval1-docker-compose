@@ -1,0 +1,44 @@
+<ng-template #addModal let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="mb-3">
+                <div class="mb-3">
+                    <label for="codRef" class="form-label">Introduce el código del referente</label>
+                    <input type="text" class="form-control" id="codRef" name="codRef" aria-describedby="codRef" [(ngModel)]="codRef" required>
+                    <div id="crError" class="text-danger">{{codRefErrNE}}</div>
+                    <div id="crError" class="text-danger">{{codRefErrR}}</div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="descRef" class="form-label">Introduce la descripción del referente</label>
+                    <input type="text" class="form-control" id="descRef" name="descRef" required [(ngModel)]="desc">
+                    <div id="dcError" class="text-danger">{{descErr}}</div>
+                  </div>
+                  <button type="button" class="btn btn-dark" (click)="toSave()">Guardar</button>
+                
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+	</div>
+</ng-template>
+<div class="d-flex mb-1 justify-content-between">
+    <div class=" fw-bold">
+        Referentes de Evaluación
+    </div>
+    <div></div>
+    <div >
+        <button class="btn btn-primary fs-5" (click)="open(addModal)"><fa-icon [icon]="['fas', 'circle-plus']" class="text-white " ></fa-icon> Añadir</button>
+    </div>
+</div>
+<div class="d-flex flex-column">
+    @for (ref of referenteList; track $index) {
+        <app-teacher-referente-item [referente]="ref"></app-teacher-referente-item>
+    }
+</div>
+<nav class="d-flex justify-content-center mt-2">
+    <ngb-pagination [collectionSize]="referenteInfo.totalElements" [(page)]="page" [maxSize]="referenteInfo.size" [boundaryLinks]="true" />
+</nav>

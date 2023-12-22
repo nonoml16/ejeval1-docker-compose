@@ -1,0 +1,19 @@
+<div class="row m-auto">
+  <app-subject-item
+    class="col-3 mt-4"
+    *ngFor="let subject of subjectList"
+    [subject]="subject"
+  ></app-subject-item>
+</div>
+<div class="pagination justify-content-center">
+  <ngb-pagination
+    class="custom-pagination"
+    [maxSize]="2"
+    [boundaryLinks]="true"
+    [collectionSize]="count"
+    [(page)]="page"
+    [pageSize]="pageSize"
+    (pageChange)="loadNewPage()"
+    aria-label="Default pagination"
+  ></ngb-pagination>
+</div>

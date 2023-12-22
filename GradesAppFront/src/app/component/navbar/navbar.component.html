@@ -1,0 +1,30 @@
+<nav id="sidebar" class="collapse d-lg-block sidebar">
+    <div class="position-sticky">
+        <div class="list-group list-group-flush mx-3 mt-4">
+            <a [routerLink]="['subjects/']"
+                class="d-flex align-items-center pb-5 mb-md-0 me-md-auto text-black text-decoration-none">
+                <img src="../../../assets/Media/Logo.png" alt="Logo de la aplicación" class="me-2" width="60"
+                    height="60">
+                <h3>GradesApp</h3>
+            </a>
+            <a [routerLink]="['teachers/']" *ngIf="rol == 'ADMIN'" class="d-flex nav-link text-muted px-0 align-middle">
+                <fa-icon [icon]="['fas', 'school']" class="fs-4 mx-2"></fa-icon>
+                <h5 class="mt-1">Profesorado</h5>
+            </a>
+            <a [routerLink]="['teacher/${id}/students']" class="d-flex nav-link text-muted align-middle px-0">
+                <fa-icon [icon]="['fas', 'person']" class="fs-4 mx-2"></fa-icon>
+                <h5 class="mt-1">Alumnado</h5>
+            </a>
+            <a [routerLink]="['subjects/']" class="d-flex nav-link text-muted px-0 align-middle">
+                <fa-icon [icon]="['fas', 'book-bookmark']" class="fs-4 mx-2"></fa-icon>
+                <h5 class="mt-1">Asignaturas</h5>
+            </a>
+            <hr>
+            <a href="" (click)="logout()" class="d-flex nav-link text-danger px-0 align-middle">
+                <fa-icon [icon]="['fas', 'person-walking-dashed-line-arrow-right']" class="fs-4 mx-2"></fa-icon>
+                <h5 class="mt-1">Cerrar sesión</h5>
+            </a>
+            <hr class="text-white">
+        </div>
+    </div>
+</nav>

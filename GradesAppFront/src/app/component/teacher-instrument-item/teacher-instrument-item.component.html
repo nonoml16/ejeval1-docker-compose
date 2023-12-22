@@ -1,0 +1,79 @@
+<ng-template #addModal let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="mb-3">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Introduce el nombre del instrumento</label>
+                    <input type="text" class="form-control" id="name" name="name"  [value]="nameEdit" [placeholder]="nameEdit" aria-describedby="codRef" [(ngModel)]="name" required>
+                    <div id="crError" class="text-danger">{{nameErr}}</div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="content" class="form-label">Introduce los contenidos del insturmento</label>
+                    <input type="text" class="form-control" id="content" name="content" [value]="contentEdit" [placeholder]="contentEdit" required [(ngModel)]="contents">
+                    <div id="dcError" class="text-danger">{{contentErr}}</div>
+                  </div>
+                  <div class="mb-3">
+                    <div>Selecciona la fecha en la que se realizará</div>
+                    <div class="input-group">
+                        <input
+                            class="form-control"
+                            [placeholder]="dateEdit"
+                            name="dp"
+                            [(ngModel)]="date"
+                            ngbDatepicker
+                            #d="ngbDatepicker"
+                            required
+                        />
+                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"><fa-icon [icon]="['fas', 'calendar-days']" class=" "></fa-icon></button>
+                    </div>
+                    <div id="dcError" class="text-danger">{{dateErr}}</div>
+                  </div>
+                  <div class="">Selecciona los referentes que quieres agregar o quitar</div>
+                  <div class="m-3 row">
+                    
+                    <div class="form-check col-4" *ngFor="let ref of referenteList">
+                        <input class="form-check-input" type="checkbox" (value)="ref.codReferente" [checked]="refEdit.includes(ref.codReferente)" (change)="addToReferentes(ref.codReferente, $event)" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          {{ref.codReferente}}
+                        </label>
+                    </div>
+                    
+                  </div>
+                  <div id="dcError" class="text-danger">{{refErr}}</div>
+                  <button type="button" class="btn btn-dark" (click)="toSave()">Guardar</button>
+                
+			</div>
+		</form>
+	</div>
+</ng-template>
+<div class="card mb-3"  style="cursor: pointer;" [routerLink]="['/teacher/subject/', asignaturaId,'instrument', instrument.id]">
+    <div class="row g-0">
+      <div class="col-md-1 align-items-center d-flex justify-content-center">
+        <div class="rounded-circle bg-primary d-flex justify-content-center align-items-center " id="clipboard-icon">
+          <fa-icon [icon]="['fas', 'clipboard-list']" class="text-white fs-3"></fa-icon>
+        </div>
+      </div>
+      <div class="col-md-10" >
+        <div class="card-body">
+          <h5 class="card-title fw-bold fs-2">{{instrument.nombre}}</h5>
+          <p class="card-text"><small class="text-body-secondary ">{{instrument.fecha}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-1 align-items-center d-flex">
+        
+        <button type="button" class="btn" [ngbPopover]="popContent" placement="bottom" (click)="popoverClicked($event)">
+          <fa-icon [icon]="['fas', 'ellipsis-vertical']" class="fs-4"></fa-icon>
+        </button>
+        <ng-template #popContent>
+          <button ngbDropdownItem class="popero w-100" (click)="open(addModal, $event)"><fa-icon [icon]="['fas', 'pen-to-square']"></fa-icon> Editar</button>
+          <hr />
+          <button ngbDropdownItem class="popero w-100" (click)="delete($event)"><fa-icon [icon]="['fas', 'trash']"></fa-icon> <i class="bi bi-trash"></i> Borrar</button>
+      </ng-template>
+      </div>
+    </div>
+</div>
+

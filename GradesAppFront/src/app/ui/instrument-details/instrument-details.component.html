@@ -1,0 +1,6 @@
+
+<div class="container-fluid w-75 m-auto">
+    <button class="btn" (click)="backPage()"><fa-icon [icon]="['fas', 'circle-arrow-left']" class="fs-3"></fa-icon></button>
+    <h2 class="h2">{{instrumento.nombre}}</h2>
+    <app-teacher-calificacion-table [referentes]="referentes"></app-teacher-calificacion-table>
+</div>

@@ -1,0 +1,37 @@
+<div
+  class="card mb-3 rounded-4"
+  [ngStyle]="{
+    width: '20rem',
+    height: '13rem',
+    'background-color': subject.color
+  }"
+>
+  <div class="card-body" style="color: black">
+    <div style="display: flex; justify-content: space-between">
+      <h3>{{ subject.asigNombre }}</h3>
+      <button
+        type="button"
+        class="btn"
+        [ngbPopover]="popContent"
+        placement="bottom"
+      >
+        <fa-icon [icon]="['fas', 'ellipsis-vertical']" class="fs-4"></fa-icon>
+      </button>
+      <ng-template #popContent>
+        <button ngbDropdownItem class="popero w-100">
+          <fa-icon [icon]="['fas', 'pen-to-square']"></fa-icon> Editar
+        </button>
+        <hr />
+        <button ngbDropdownItem class="popero w-100">
+          <fa-icon [icon]="['fas', 'trash']"></fa-icon>
+          <i class="bi bi-trash"></i> Borrar
+        </button>
+      </ng-template>
+    </div>
+    <h5 class="card-title">{{ subject.nombreProfesor }}</h5>
+    <p class="card-text">
+      {{ subject.asigDescripcion }}
+    </p>
+    <p style="text-align: center">{{subject.numAlumnos}} Alumnos</p>
+  </div>
+</div>

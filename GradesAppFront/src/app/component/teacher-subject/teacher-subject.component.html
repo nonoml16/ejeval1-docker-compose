@@ -1,0 +1,17 @@
+<div class="container-fluid w-75">
+    <div class="d-flex justify-content-between">
+        <h1 class="h1 fw-bold">Asignatura</h1>
+    </div>
+    <hr />
+    <nav class="nav d-flex justify-content-between ">
+        <button class="btn fw-bold fs-4" (click)="changeInstrument(true)">
+            Instrumento
+        </button>
+        <button class="btn  fw-bold fs-4" (click)="changeInstrument(false)">
+            Referente
+        </button>
+    </nav>
+    <hr class="m-0 mb-3"/>
+    <app-teacher-instrument-list  *ngIf="isInstrumentSelected"></app-teacher-instrument-list>
+    <app-teacher-referent-list *ngIf="!isInstrumentSelected"></app-teacher-referent-list>
+</div>

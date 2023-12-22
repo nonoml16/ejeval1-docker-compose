@@ -1,0 +1,122 @@
+<div class="d-flex mb-1 justify-content-between">
+  <h1>Asignaturas</h1>
+  <div class="">
+    <button class="btn btn-primary fs-5" (click)="open(content)">
+      <fa-icon [icon]="['fas', 'circle-plus']" class="text-white"></fa-icon>
+      Añadir
+    </button>
+  </div>
+</div>
+<hr />
+<app-subject-list></app-subject-list>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Añadir Asignatura</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="nombre">Nombre</label>
+        <div class="form-group">
+          <input
+            id="nombre"
+            name="nombre"
+            type="text"
+            class="form-control"
+            placeholder="Paco pepe"
+            [(ngModel)]="nombre"
+            required
+          />
+          <div id="nomErr" class="text-danger mx-3">{{ nomErr }}</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="horas">Horas de la asignatura</label>
+        <div class="input-group">
+          <input
+            id="horas"
+            class="form-control"
+            placeholder="13"
+            name="horas"
+            ngbDatepicker
+            #dp="ngbDatepicker"
+            [(ngModel)]="horas"
+            required
+          />
+        </div>
+        <div id="horasErrormin" class="text-danger mx-3">
+          {{ horasErrormin }}
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="descripcion">Descripción</label>
+        <div class="form-group">
+          <input
+            id="descripcion"
+            name="descripcion"
+            class="form-control"
+            type="text"
+            placeholder="Esta asignatura es la mejor del mundo"
+            [(ngModel)]="descripcion"
+            required
+          />
+          <div id="descripError" class="text-danger mx-3">
+            {{ descripError }}
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="profesor">Profesor</label>
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          (change)="capturar(profe.value)"
+          #profe
+        >
+          <option
+            [value]="profe.id"
+            *ngFor="let profe of profesorList"
+            id="idProfesor"
+          >
+            {{ profe.nombre }}
+          </option>
+        </select>
+        <div id="idProError" class="text-danger mx-3">
+          {{ idProError }}
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="color">Color</label>
+        <div class="form-group">
+          <input
+            id="color"
+            name="color"
+            class="form-control"
+            placeholder="#FF5733"
+            type="text"
+            [(ngModel)]="color"
+            required
+          />
+          <div id="colorError" class="text-danger mx-3">
+            {{ colorError }}
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="createdAsigna()"
+    >
+      Save
+    </button>
+  </div>
+</ng-template>

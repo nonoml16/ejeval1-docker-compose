@@ -1,0 +1,34 @@
+<div class="registration-form">
+    <form>
+        <div class="form-group">
+            <input type="text" class="form-control item" id="username" placeholder="Username" [(ngModel)]="username"
+                name="username">
+            <div id="userErr" class="text-danger mx-3">{{usernameErr}}</div>
+        </div>
+
+        <div class=" form-group">
+            <input type="email" class="form-control item" id="email" placeholder="Email" [(ngModel)]="email"
+                name="email">
+            <div id="emailErr" class="text-danger mx-3">{{emailErr}}</div>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control item" id="password" placeholder="Password" [(ngModel)]="password"
+                name="password">
+            <div id="passwordErr" class="text-danger mx-3">{{passwordErr}}</div>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control item" id="r-password" placeholder="Repeat password"
+                [(ngModel)]="repeatPassword" name="r-password">
+            <div id="repeatPasswordErr" class="text-danger mx-3">{{repeatPasswordErr}}</div>
+        </div>
+        <div class="form-group">
+            <input type="date" class="form-control item" id="birth-date" placeholder="Birth Date" [(ngModel)]="date"
+                name="birth-date">
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-primary create-account form-control item"
+                (click)="createStudent()">Create Account</button>
+            <a class="d-flex justify-content-center align-items-center" [routerLink]="['/login/']">Inicia sesión</a>
+        </div>
+    </form>
+</div>
